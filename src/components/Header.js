@@ -48,7 +48,7 @@ const UserInfo = styled.div`
     margin-right: 1rem;
 `;
 
-const HeaderButton = styled.Button`
+const HeaderButton = styled(Button)`
     background-color: white;
     color: black;
     border: 1px solid #666;
@@ -63,7 +63,7 @@ const Header = ({ user, onLogout }) => {
             <HeaderBlock>
                 <Wrapper>
                     <Link to="/" className="logo">
-                        REACTORS
+                        Planet Blog
                     </Link>
                     {user ? (
                         <div className="right">

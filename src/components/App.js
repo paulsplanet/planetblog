@@ -1,15 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import Navigation from "./Router";
 
-class App extends Component {
+const App = () => {
 
+  return (
+    <>
+      <Navigation />
+    </>
+  )
+}; 
 
-  render() {
-    return (
-      <>
-        <Navigation />
-      </>
-    )
-  }
-}
 export default App;
