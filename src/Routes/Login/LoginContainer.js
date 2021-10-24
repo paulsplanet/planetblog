@@ -1,6 +1,7 @@
 import React from "react";
 import LoginForm from "../../Components/LoginForm";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 
 const LoginBack = styled.div`
@@ -26,16 +27,31 @@ const Title = styled.div`
     font-weight: 600;
 `;
 
-const LoginContainer = () => {
+const LoginContainer = ({ login, username, submit }) => {
 
     return (
         <LoginBack>
             <LoginWrap>
                 <Title>Planet Blog</Title>
-                <LoginForm />
+                <LoginForm login={login} username={username} onSubmit={submit} />
             </LoginWrap>
         </LoginBack>
     )
 };
 
-export default LoginContainer;
+const mapStateToProps = state => ({
+    login: state.auth.login,
+    username: state.auth.username,
+});
+
+const mapDispatchToProps = dispatch => ({
+    submit: () => {
+        console.log("submit")
+    }
+});
+
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(LoginContainer);
