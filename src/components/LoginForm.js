@@ -4,6 +4,29 @@ import styled from "styled-components";
 import Button from "./utils/Button";
 
 
+const LoginBack = styled.div`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #a5b1c2;
+`;
+
+const LoginWrap = styled.div`
+    width: 360px;
+    height: 360px;
+    padding: 32px;
+    background-color: white;
+`;
+
+const Title = styled.div`
+    text-align: center;
+    padding-bottom: 2rem;
+    font-size: 24px;
+    font-weight: 600;
+`;
+
 const AuthFormBlock = styled.div`
     h3 {
         margin: 0;
@@ -54,18 +77,23 @@ const ErrorMessage = styled.div`
 const LoginForm = ({ login, username, submit, form, onChange, onSubmit, error }) => {
     
     return (
-        <AuthFormBlock>
-            <h3>LogIn</h3>
-            <form onSubmit={onSubmit}>
-                <StyledInput name="username" placeholder="ID" onChange={onChange}  />
-                <StyledInput name="password" placeholder="password" type="password" onChange={onChange}  />
-                {error && <ErrorMessage>{error}</ErrorMessage>}
-                <ButtonWithMarginTop orange fullWidth onSubmit={submit}>LogIn</ButtonWithMarginTop>
-            </form>
-            <Footer>
-                <Link to="/register">Register</Link>
-            </Footer>
-        </AuthFormBlock>
+        <LoginBack>
+            <LoginWrap>
+                <Title>Planet Blog</Title>
+                <AuthFormBlock>
+                    <h3>LogIn</h3>
+                    <form onSubmit={onSubmit}>
+                        <StyledInput name="username" placeholder="ID" onChange={onChange}  />
+                        <StyledInput name="password" placeholder="password" type="password" onChange={onChange}  />
+                        {error && <ErrorMessage>{error}</ErrorMessage>}
+                        <ButtonWithMarginTop orange fullWidth onSubmit={submit}>LogIn</ButtonWithMarginTop>
+                    </form>
+                    <Footer>
+                        <Link to="/register">Register</Link>
+                    </Footer>
+                </AuthFormBlock>
+            </LoginWrap>
+        </LoginBack>
     )
 }
 
