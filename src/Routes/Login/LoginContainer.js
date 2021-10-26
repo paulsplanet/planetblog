@@ -1,28 +1,53 @@
 import React from "react";
 import LoginForm from "../../Components/LoginForm";
 import { connect } from "react-redux";
+import { loginForm, changeInput } from "../../modules/auth";
 
 
-const LoginContainer = ({ login, username, submit }) => {
-
+const LoginContainer = ({ login, loginForm, changeInput }) => {
+    
+    
     return (
-        <LoginForm login={login} username={username} onSubmit={submit} />
+        <>
+        <LoginForm   form={login} onLogin={loginForm} onChangeInput={changeInput} />
+        </>
     )
 };
 
+
+export default connect(
+   ({ auth }) => ({
+       login: auth.login,
+       user: auth.user
+   }),
+   {
+       changeInput,
+       loginForm,
+   }
+)(LoginContainer);
+
+
+
+/*
 const mapStateToProps = state => ({
     login: state.auth.login,
-    username: state.auth.username,
+    user: state.auth.user,
 });
 
 const mapDispatchToProps = dispatch => ({
-    submit: () => {
-        console.log("submit")
-    }
+    loginForm: () => {
+        dispatch(loginForm())
+    },
+    changeInput: () => {
+        dispatch(changeInput())
+    },
 });
-
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(LoginContainer);
+)(LoginContainer)
+*/
+
+
+

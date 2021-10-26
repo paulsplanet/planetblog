@@ -67,14 +67,28 @@ const ButtonWithMarginTop = styled(Button)`
     margin-top: 1rem;
 `;
 
-const ErrorMessage = styled.div`
+/*const ErrorMessage = styled.div`
     color: #eb3b5a;
     text-align: center;
     font-size: 0.875rem;
     margin-top: 1rem;
-`;
+`;*/
 
-const LoginForm = ({ login, username, submit, form, onChange, onSubmit, error }) => {
+const LoginForm = ({ form, onLogin, onChangeInput }) => {
+    const onSubmit = e => {
+        e.preventDefault();
+        const { id, password } = form;
+        onLogin({ id, password });
+        //onChangeInput("");
+    }
+    const onChange = e => { 
+        const { value, name } = e.target;
+        onChangeInput({ 
+            form: 'login',
+            key: name,
+            value,
+         });
+    }
     
     return (
         <LoginBack>
@@ -83,10 +97,9 @@ const LoginForm = ({ login, username, submit, form, onChange, onSubmit, error })
                 <AuthFormBlock>
                     <h3>LogIn</h3>
                     <form onSubmit={onSubmit}>
-                        <StyledInput name="username" placeholder="ID" onChange={onChange}  />
-                        <StyledInput name="password" placeholder="password" type="password" onChange={onChange}  />
-                        {error && <ErrorMessage>{error}</ErrorMessage>}
-                        <ButtonWithMarginTop orange fullWidth onSubmit={submit}>LogIn</ButtonWithMarginTop>
+                        <StyledInput name="id" placeholder="ID" onChange={onChange} value={form.id} />
+                        <StyledInput name="password" placeholder="password" type="password" onChange={onChange} value={form.password} />
+                        <ButtonWithMarginTop type="submit" orange fullWidth>LogIn</ButtonWithMarginTop>
                     </form>
                     <Footer>
                         <Link to="/register">Register</Link>
