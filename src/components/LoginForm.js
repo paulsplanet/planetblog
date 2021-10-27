@@ -74,12 +74,12 @@ const ButtonWithMarginTop = styled(Button)`
     margin-top: 1rem;
 `;*/
 
-const LoginForm = ({ form, onLogin, onChangeInput }) => {
+const LoginForm = ({ form, onLogin, onChangeInput, onClean, }) => {
     const onSubmit = e => {
         e.preventDefault();
         const { id, password } = form;
         onLogin({ id, password });
-        //onChangeInput("");
+        onClean('login');
     }
     const onChange = e => { 
         const { value, name } = e.target;

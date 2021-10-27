@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LoginForm from "../../Components/LoginForm";
 import { connect } from "react-redux";
-import { loginForm, changeInput } from "../../modules/auth";
+import { loginForm, changeInput, cleanForm } from "../../modules/auth";
 
 
-const LoginContainer = ({ login, loginForm, changeInput }) => {
-    
+const LoginContainer = ({ user, login, loginForm, changeInput, cleanForm, history }) => {
+    useEffect(() => {
+        if(user.id) history.push('/')
+    })
     
     return (
         <>
-        <LoginForm   form={login} onLogin={loginForm} onChangeInput={changeInput} />
+        <LoginForm   form={login} onLogin={loginForm} onChangeInput={changeInput} onClean={cleanForm} />
         </>
     )
 };
@@ -23,6 +25,7 @@ export default connect(
    {
        changeInput,
        loginForm,
+       cleanForm,
    }
 )(LoginContainer);
 
