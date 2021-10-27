@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "./utils/Button";
 
 
-const LoginBack = styled.div`
+const RegisterBack = styled.div`
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -13,9 +13,9 @@ const LoginBack = styled.div`
     background-color: #a5b1c2;
 `;
 
-const LoginWrap = styled.div`
+const RegisterWrap = styled.div`
     width: 360px;
-    height: 360px;
+    height: 400px;
     padding: 32px;
     border-radius: 5px;
     background-color: white;
@@ -28,7 +28,7 @@ const Title = styled.div`
     font-weight: 600;
 `;
 
-const AuthFormBlock = styled.div`
+const RegisterFromBlock = styled.div`
     h3 {
         margin: 0;
         color: #485460;
@@ -75,40 +75,43 @@ const ButtonWithMarginTop = styled(Button)`
     margin-top: 1rem;
 `;*/
 
-const LoginForm = ({ form, onLogin, onChangeInput, onClean, }) => {
+const RegisterForm
+ = ({ form, onLogin, onChangeInput, onClean, }) => {
     const onSubmit = e => {
         e.preventDefault();
         const { id, password } = form;
         onLogin({ id, password });
-        onClean('login');
+        onClean('register');
     }
     const onChange = e => { 
         const { value, name } = e.target;
         onChangeInput({ 
-            form: 'login',
+            form: 'register',
             key: name,
             value,
          });
     }
     
     return (
-        <LoginBack>
-            <LoginWrap>
+        <RegisterBack>
+            <RegisterWrap>
                 <Title>Planet Blog</Title>
-                <AuthFormBlock>
-                    <h3>LogIn</h3>
+                <RegisterFromBlock>
+                    <h3>Register</h3>
                     <form onSubmit={onSubmit}>
-                        <StyledInput name="id" placeholder="ID" onChange={onChange} value={form.id} />
-                        <StyledInput name="password" placeholder="password" type="password" onChange={onChange} value={form.password} />
-                        <ButtonWithMarginTop type="submit" orange fullWidth>LogIn</ButtonWithMarginTop>
+                        <StyledInput name="id" placeholder="ID" onChange={onChange} value={form} />
+                        <StyledInput name="password" placeholder="password" type="password" onChange={onChange} value={form} />
+                        <StyledInput name="passwordConfirm" placeholder="confirm password" type="password" onChange={onChange} value={form} />
+                        <ButtonWithMarginTop type="submit" orange fullWidth>Register</ButtonWithMarginTop>
                     </form>
                     <Footer>
-                        <Link to="/register">Register</Link>
+                        <Link to="/login">Login</Link>
                     </Footer>
-                </AuthFormBlock>
-            </LoginWrap>
-        </LoginBack>
+                </RegisterFromBlock>
+            </RegisterWrap>
+        </RegisterBack>
     )
 }
 
-export default LoginForm;
+export default RegisterForm
+;
