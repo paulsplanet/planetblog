@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "./utils/Button";
+import { useSelector } from "react-redux";
+
 
 const HeaderBlock = styled.div`
     position: fixed;
@@ -57,7 +59,10 @@ const HeaderButton = styled(Button)`
     }
 `;
 
-const Header = ({ user, onLogout }) => {
+const Header = ({ onLogout }) => {
+    const user  = useSelector(state => state.auth.user.id );
+    console.log("navi", user)
+
     return (
         <>
             <HeaderBlock>
@@ -65,9 +70,9 @@ const Header = ({ user, onLogout }) => {
                     <Link to="/" className="logo">
                         Planet Blog
                     </Link>
-                    {user ? (
+                    {user? (
                         <div className="right">
-                            <UserInfo>{user.username}</UserInfo>
+                            <UserInfo>{user}</UserInfo>
                             <HeaderButton onClick={onLogout}>Logout</HeaderButton>
                         </div>
                     ) : (
