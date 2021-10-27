@@ -1,33 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import RegisterForm from "../../Components/RegisterForm";
-//import { connect } from "react-redux";
+import { connect } from "react-redux";
+import { typeInput, registerForm, cleanInput } from "../../modules/register"
 
 
 
-const RegisterContainer = () => {
-    
+const RegisterContainer = ({ register, users, status, typeInput, registerForm, cleanInput, history }) => {
+    useEffect(() => {
+        if (status) history.push('/')
+    })
     
     return (
-        <RegisterForm />
+        <RegisterForm form={register} onTypeInput={typeInput} onRegisterForm={registerForm} onCleanInput={cleanInput} />
     )
 };
 
-export default RegisterContainer;
 
-/*
 export default connect(
    ({ register }) => ({
-       login: auth.login,
-       user: auth.user
+       register: register.register,
+       users: register.users,
+       status: register.status
    }),
    {
-       changeInput,
-       loginForm,
-       cleanForm,
+       typeInput,
+       registerForm,
+       cleanInput,
    }
-)(LoginContainer);
-*/
-
+)(RegisterContainer);
 
 
 /*

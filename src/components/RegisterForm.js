@@ -76,16 +76,16 @@ const ButtonWithMarginTop = styled(Button)`
 `;*/
 
 const RegisterForm
- = ({ form, onLogin, onChangeInput, onClean, }) => {
+ = ({ form, onTypeInput, onRegisterForm, onCleanInput }) => {
     const onSubmit = e => {
         e.preventDefault();
         const { id, password } = form;
-        onLogin({ id, password });
-        onClean('register');
+        onRegisterForm({ id, password });
+        onCleanInput();
     }
     const onChange = e => { 
         const { value, name } = e.target;
-        onChangeInput({ 
+        onTypeInput({ 
             form: 'register',
             key: name,
             value,
@@ -99,9 +99,9 @@ const RegisterForm
                 <RegisterFromBlock>
                     <h3>Register</h3>
                     <form onSubmit={onSubmit}>
-                        <StyledInput name="id" placeholder="ID" onChange={onChange} value={form} />
-                        <StyledInput name="password" placeholder="password" type="password" onChange={onChange} value={form} />
-                        <StyledInput name="passwordConfirm" placeholder="confirm password" type="password" onChange={onChange} value={form} />
+                        <StyledInput name="id" placeholder="ID" onChange={onChange} value={form.id} />
+                        <StyledInput name="password" placeholder="password" type="password" onChange={onChange} value={form.password} />
+                        <StyledInput name="passwordConfirm" placeholder="confirm password" type="password" onChange={onChange} value={form.passwordConfirm} />
                         <ButtonWithMarginTop type="submit" orange fullWidth>Register</ButtonWithMarginTop>
                     </form>
                     <Footer>
