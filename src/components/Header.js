@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "./utils/Button";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { cleanForm } from "../modules/auth";
 
 
 const HeaderBlock = styled.div`
@@ -59,9 +60,9 @@ const HeaderButton = styled(Button)`
     }
 `;
 
-const Header = ({ onLogout }) => {
+const Header = () => {
     const user  = useSelector(state => state.auth.user.id );
-    console.log("navi", user)
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -73,7 +74,7 @@ const Header = ({ onLogout }) => {
                     {user? (
                         <div className="right">
                             <UserInfo>{user}</UserInfo>
-                            <HeaderButton onClick={onLogout}>Logout</HeaderButton>
+                            <HeaderButton onClick={() => dispatch(cleanForm('user'))}>Logout</HeaderButton>
                         </div>
                     ) : (
                         <div className="right">

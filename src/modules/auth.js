@@ -3,7 +3,7 @@ import produce from "immer";
 
 const CHANGE_INPUT = 'auth/change_input';
 const LOGIN = 'auth/login';
-const CLEAN_FORM = 'auth/clean_form'
+const CLEAN_FORM = 'auth/clean_form';
 
 export const changeInput = createAction(
     CHANGE_INPUT, 
@@ -13,7 +13,6 @@ export const changeInput = createAction(
 export const loginForm = createAction(LOGIN, ({ id, password }) => ({ id, password, }) );
 
 export const cleanForm = createAction(CLEAN_FORM, form => form);
-
 
 
 const initialState ={
@@ -40,6 +39,6 @@ export default handleActions({
     [CLEAN_FORM]: (state, { payload: form }) => ({
         ...state,
         [form]: initialState[form]
-    })
+    }),
 
 }, initialState);
