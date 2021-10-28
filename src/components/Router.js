@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-d
 import PostList from "../Routes/PostList";
 import Login from "../Routes/Login";
 import Register from "../Routes/Register";
+import Post from "../Routes/Post";
 
 
 const Navigation = function() {
@@ -12,9 +13,9 @@ const Navigation = function() {
                 <Route path="/" exact component={PostList} /> 
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
-                { /* 
+                <Route path="/post" component={Post} />
+                { /*
                 <Route path="/write" component={Write} />
-                <Route path="/Post" component={Post} />
                 */}
                 <Redirect from="*" to="/" />
             </Switch>    

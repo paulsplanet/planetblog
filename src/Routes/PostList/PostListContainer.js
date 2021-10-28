@@ -42,7 +42,7 @@ const PostListContainer = () => {
             <PostListBlock>
                 <WritePostButtonWrapper>
                     { user && (
-                        <PostButton orange to='/write'>New Post</PostButton>
+                        <PostButton orange to='/post'>New Post</PostButton>
                     )}
                 </WritePostButtonWrapper>
                 <div>
