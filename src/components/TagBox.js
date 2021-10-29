@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const TagBoxBlock = styled.div`
@@ -101,7 +101,6 @@ const TagBox = ({ tags, onChangeTag }) => {
         const refreshTags = localTags.filter(t => t !== id);
         setLocalTags(refreshTags);
         onChangeTag(refreshTags);
-        //console.log("try remove", refreshTags)
     }
 
     return(

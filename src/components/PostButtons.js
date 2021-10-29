@@ -25,10 +25,26 @@ const StyledButton = styled(Button)`
     }
 `;
 
-const PostButtons = ({ onCancel, onPublish, isEdit }) => {
+const PostButtons = ({ title, body, tags, onPostWriting, onInitializeField, history }) => {
+    
+    const onSubmit = (title, body, tags) => {
+        onPostWriting({
+            title: title,
+            body: body,
+            tags: tags,
+        });
+        onInitializeField();
+        history.push('/');
+    }
+
+    const onCancel = () => {
+        onInitializeField();
+        history.push('/');
+    }
+
     return (
         <WriteActionButtonsBlock>
-            <StyledButton orange onClick={onPublish}>Post {isEdit ? 'Edit' : 'Submit'}</StyledButton>
+            <StyledButton orange onClick={() => onSubmit(title, body, tags)}>Post Submit</StyledButton>
             <StyledButton onClick={onCancel}>Cancel</StyledButton>
         </WriteActionButtonsBlock>
     )
