@@ -3,14 +3,14 @@ import Editor from "../../Components/Editor";
 import PostButtons from "../../Components/PostButtons";
 import TagBox from "../../Components/TagBox";
 import { connect } from "react-redux";
-import { changeField } from "../../modules/post";
+import { changeField, changeTag } from "../../modules/post";
 
-const PostContainer = ({ title, body, tag, post, changeField }) => {
+const PostContainer = ({ title, body, tags, post, changeField, changeTag }) => {
 
     return (
         <>
             <Editor title={title} body={body} onChangeField={changeField} />
-            <TagBox />
+            <TagBox tags={tags} onChangeTag={changeTag} />
             <PostButtons />
         </>
     )
@@ -26,5 +26,6 @@ export default connect(
     }), 
     {
         changeField,
+        changeTag,
     }
 )(PostContainer);

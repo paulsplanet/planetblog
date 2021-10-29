@@ -57,9 +57,17 @@ const Tag = styled.div`
     margin-right: 0.5rem;
     color: #778ca3;
     cursor: pointer;
+    display: flex; 
     &:hover {
         opacity: 0.5;
     }
+`;
+
+const RemoveButton = styled.div`
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
+    font-size: 14px;
 `;
 
 const TagListBlock = styled.div`
@@ -67,53 +75,34 @@ const TagListBlock = styled.div`
     margin-top: 0.5rem;
 `;
 
-// const TagItem = React.memo(({ tag, onRemove }) => <Tag onClick={onRemove}>#{tag}</Tag>);
-
-const TagList = React.memo(({ tags, onRemove }) => (
-    <TagListBlock>
-       {/* {tags.map(tag => (
-            <TagItem key={tag} tag={tag} onRemove={onRemove} />
-        ))}
-       */}
-    </TagListBlock>
-));
-
-const TagBox = ({ tags, onChangeTags }) => {
+const TagBox = ({ tags, onChangeTag }) => {
     const [input, setInput] = useState('');
     const [localTags, setLocalTags] = useState([]);
-    const insertTag = useCallback(
-        tag => {
-            if (!tag) return;
-            if (localTags.includes(tag)) return;
-            const nextTags = [...localTags, tag];
-            setLocalTags(nextTags);
-            onChangeTags(nextTags);
-        },
-        [localTags, onChangeTags],
-    );
-    const onRemove = useCallback(
-        tag => {
-            const nextTags = localTags.filter(t => t !== tag);
-            setLocalTags(nextTags);
-            onChangeTags(nextTags);
-        },
-        [localTags, onChangeTags],
-    );
-    const onChange = useCallback(
-        e => {setInput(e.target.value);}, []
-    );
-    const onSubmit = useCallback(
-        e => {
-            e.preventDefault();
-            insertTag(input.trim());
-            setInput('');
-        },
-        [input, insertTag],
-    );
+    
+    const onChange = e => {
+        setInput(e.target.value)
+    }
 
-    useEffect(() => {
-        setLocalTags(tags);
-    }, [tags]);
+    const onSubmit = (e) => {
+        e.preventDefault();
+        insertTag(input);
+        setInput('');
+    }
+
+    const insertTag = (tag) => {
+        if(!tag) return;
+        if(localTags.includes(tag)) return;
+        const newTag = [...localTags, tag];
+        setLocalTags(newTag);
+        onChangeTag(newTag);
+    }
+
+    const onRemove = (id) => {    
+        const refreshTags = localTags.filter(t => t !== id);
+        setLocalTags(refreshTags);
+        onChangeTag(refreshTags);
+        //console.log("try remove", refreshTags)
+    }
 
     return(
         <TagBoxBlock>
@@ -122,7 +111,14 @@ const TagBox = ({ tags, onChangeTags }) => {
                 <input placeholder="write a tag here" value={input} onChange={onChange} />
                 <button type="submit">ADD</button>
             </TagForm>
-            <TagList tags={localTags} onRemove={onRemove} />
+            <TagListBlock>
+                {localTags.map((localTag, index) => (
+                    <Tag key={index} >
+                        #{localTag}
+                        <RemoveButton onClick={() => onRemove(localTag)}>(❌)</RemoveButton>
+                    </Tag>
+                ))}
+            </TagListBlock>
         </TagBoxBlock>
     );
 };

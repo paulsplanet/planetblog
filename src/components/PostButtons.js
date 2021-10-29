@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "./utils/Button";
 
 const WriteActionButtonsBlock = styled.div`
-    margin: 2rem auto;
+    margin: 1.5rem auto;
     width: 1024px;
     
     @media (max-width: 1024px) {
