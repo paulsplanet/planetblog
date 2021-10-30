@@ -3,6 +3,8 @@ import Header from "../../Components/Header";
 import styled from "styled-components";
 import Button from "../../Components/utils/Button";
 import { useSelector } from "react-redux";
+import PostList from "../../Components/PostList";
+
 
 const PostListBlock = styled.div`
     margin-top: 3rem;
@@ -34,20 +36,21 @@ const PostButton = styled(Button)`
 `;
 
 const PostListContainer = () => {
-    const user = useSelector(state => state.auth.user.id)
+    const { user, posts } = useSelector( ({ auth, post }) => ({
+        user: auth.user,
+        posts: post.posts,
+    }))
 
     return (
         <>
             <Header />
             <PostListBlock>
                 <WritePostButtonWrapper>
-                    { user && (
+                    { user.id && (
                         <PostButton orange to='/post'>New Post</PostButton>
                     )}
                 </WritePostButtonWrapper>
-                <div>
-                    present posts here
-                </div>
+                <PostList posts={posts} />
             </PostListBlock>
         </>
     )

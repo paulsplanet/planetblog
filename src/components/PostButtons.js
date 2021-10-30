@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "./utils/Button";
+import { useSelector } from "react-redux";
 
 const WriteActionButtonsBlock = styled.div`
     margin: 1.5rem auto;
@@ -26,12 +27,16 @@ const StyledButton = styled(Button)`
 `;
 
 const PostButtons = ({ title, body, tags, onPostWriting, onInitializeField, history }) => {
-    
+    const user = useSelector(state => state.auth.user.id)
+    const date = new Date();
+
     const onSubmit = (title, body, tags) => {
         onPostWriting({
             title: title,
             body: body,
             tags: tags,
+            username: user,
+            publishedDate: date,
         });
         onInitializeField();
         history.push('/');
