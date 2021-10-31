@@ -29,6 +29,7 @@ const StyledButton = styled(Button)`
 const PostButtons = ({ title, body, tags, onPostWriting, onInitializeField, history }) => {
     const user = useSelector(state => state.auth.user.id)
     const date = new Date();
+    const id = Number(date)
 
     const onSubmit = (title, body, tags) => {
         onPostWriting({
@@ -37,6 +38,7 @@ const PostButtons = ({ title, body, tags, onPostWriting, onInitializeField, hist
             tags: tags,
             username: user,
             publishedDate: date,
+            _id: id,
         });
         onInitializeField();
         history.push('/');

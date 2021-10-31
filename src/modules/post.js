@@ -7,7 +7,11 @@ const INITIALIZE_FIELD = 'post/initialize_field';
 
 export const changeField = createAction(CHANGE_FILED, ({ key, value }) => ({ key, value }) );
 export const changeTag = createAction(CHANGE_TAG);
-export const postWriting = createAction(POST_WRITING, ({ title, body, tags, username, publishedDate }) => ({ title, body, tags, username, publishedDate }) );
+export const postWriting = createAction(
+    POST_WRITING, 
+    ({ title, body, tags, username, publishedDate, _id }) => 
+    ({ title, body, tags, username, publishedDate, _id }) 
+);
 export const initializeField = createAction(INITIALIZE_FIELD);
 
 const initialState = {
@@ -21,6 +25,7 @@ const initialState = {
             tags: ['tag1', 'tag2'],
             username: "Paul H",
             publishedDate: "10/29/2021",
+            _id: "1",
         },
         {
             title: 'test2',
@@ -28,6 +33,7 @@ const initialState = {
             tags: ['tag22', 'tag222'],
             username: "Paul H",
             publishedDate: "10/29/2021",
+            _id: "2",
         }
     ],
 }

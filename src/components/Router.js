@@ -4,6 +4,7 @@ import PostList from "../Routes/PostList";
 import Login from "../Routes/Login";
 import Register from "../Routes/Register";
 import Post from "../Routes/Post";
+import PostViewer from "../Routes/PostViewer";
 
 
 const Navigation = function() {
@@ -14,9 +15,7 @@ const Navigation = function() {
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
                 <Route path="/post" component={Post} />
-                { /*
-                <Route path="/write" component={Write} />
-                */}
+                <Route path="/@:username/:postId" component={PostViewer} />
                 <Redirect from="*" to="/" />
             </Switch>    
         </Router>

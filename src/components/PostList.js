@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import sanitizeHtml from "sanitize-html";
@@ -68,7 +68,7 @@ const TagsBlock = styled.div`
 
 
 const PostItem = ({ post }) => {
-    const { publishedDate, username, tags, title, body } = post;
+    const { publishedDate, username, tags, title, body, _id } = post;
 
     const sanitizedAndShortened = (text) => {
         const clean = sanitizeHtml(text);
@@ -80,7 +80,7 @@ const PostItem = ({ post }) => {
     return (
         <PostItemBlock>
             <h2>
-                 <Link to={`/@${username}/${publishedDate}}`}>{title}</Link> 
+                 <Link to={`/@${username}/${_id}`}>{title}</Link> 
             </h2>
             <SubInfoBlock>
                 <span><b><Link to={`/@${username}`}>{username}</Link></b></span>
@@ -97,7 +97,13 @@ const PostItem = ({ post }) => {
 };
 
 const PostList = ( posts ) => {
-    const newPosts = posts.posts;
+    const [newPosts, setNewPosts] = useState()
+
+    useEffect(() => {
+        const existingPosts = posts.posts;
+        const newOrderPosts = existingPosts.reverse();    
+        setNewPosts(newOrderPosts)
+    }, )
     
 
     return (
