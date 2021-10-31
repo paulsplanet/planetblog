@@ -11,9 +11,6 @@ const PostViewerContainer = (match) => {
         return String(post._id) === id
 
     })
-    console.log("posts", posts)
-    console.log("id", id, "selectPost", selectPost)
-
 
     return(
         <>
