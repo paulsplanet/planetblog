@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
+import sanitizeHtml from "sanitize-html";
 
 const PostListBlock = styled.div`
     margin-top: 3rem;
@@ -68,6 +69,14 @@ const TagsBlock = styled.div`
 
 const PostItem = ({ post }) => {
     const { publishedDate, username, tags, title, body } = post;
+
+    const sanitizedAndShortened = (text) => {
+        const clean = sanitizeHtml(text);
+        return clean.length < 80 ? clean : clean.slice(0, 80);
+    }
+
+    const sanitizedBody = sanitizedAndShortened(body);
+
     return (
         <PostItemBlock>
             <h2>
@@ -82,13 +91,14 @@ const PostItem = ({ post }) => {
                     <Link className='tag' to={`/?tag=${tag}`} key={tag}>#{tag}</Link>
                 ))}
             </TagsBlock>
-            <p>{body}</p>
+            <p dangerouslySetInnerHTML={{__html: sanitizedBody}} />
         </PostItemBlock>
     );
 };
 
 const PostList = ( posts ) => {
     const newPosts = posts.posts;
+    
 
     return (
         <PostListBlock>
