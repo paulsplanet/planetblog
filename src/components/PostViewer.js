@@ -61,6 +61,7 @@ const TagsBlock = styled.div`
 `;
 
 const PostViewer = (post) => {
+    
     const { title, body, username, publishedDate, tags } = post.post[0];
     
     const sanitizedBody = sanitizeHtml(body);
@@ -74,8 +75,8 @@ const PostViewer = (post) => {
                     <span>{new Date(publishedDate).toLocaleDateString()}</span>
                 </SubInfoBlock>
                 <TagsBlock>
-                    {tags.map(tag => (
-                        <div>#{tag}</div>
+                    {tags.map((tag, index) => (
+                        <div key={index} className='tag'>#{tag}</div>
                     ))}
                 </TagsBlock>
                 <PostContent dangerouslySetInnerHTML={{ __html: sanitizedBody }} />

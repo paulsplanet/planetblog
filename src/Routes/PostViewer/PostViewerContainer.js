@@ -8,9 +8,11 @@ const PostViewerContainer = (match) => {
     const posts = useSelector( state => state.post.posts)
     const id = match.match.params.postId;
     const selectPost = posts.filter(function(post) {     
-        return post._id === Number(id)
+        return String(post._id) === id
 
     })
+    console.log("posts", posts)
+    console.log("id", id, "selectPost", selectPost)
 
 
     return(

@@ -72,7 +72,7 @@ const PostItem = ({ post }) => {
 
     const sanitizedAndShortened = (text) => {
         const clean = sanitizeHtml(text);
-        return clean.length < 80 ? clean : clean.slice(0, 80);
+        return clean.length < 100 ? clean : clean.slice(0, 100);
     }
 
     const sanitizedBody = sanitizedAndShortened(body);

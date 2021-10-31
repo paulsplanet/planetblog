@@ -20,20 +20,20 @@ const initialState = {
     tags: [], 
     posts: [
         {
-            title: 'test',
-            body: 'this is test posting',
-            tags: ['tag1', 'tag2'],
+            title: 'Welcome to My Blog',
+            body: '<p>I built this blog by using React and Redux.</p><p>There are login page, register page, and other pages.</p><p>After you logged in, you can see the "New Post" button. You can write a post by clicking the button.</p><p>I imported Quill for post body section. You can adjust style by using quill functions.</p><p>Thank you for your Visiting!</p>',
+            tags: ['React', 'Redux'],
             username: "Paul H",
             publishedDate: "10/29/2021",
-            _id: "1",
+            _id: "15081253",
         },
         {
-            title: 'test2',
-            body: 'this is test posting2',
-            tags: ['tag22', 'tag222'],
+            title: 'I am looking for a Junior Frontend Developer position',
+            body: '<p>Welcome to my blog, Everyone</p><p>I am self-taught developer.</p><p>I\'ve been studying coding since end of 2020.</p><p>I used "freeCodeCamp" first with couple of actual coding books for studying. Then I watched Youtubes, Posts on Google, and other online lectures to practice what I\'ve been studied and make my own works.</p><p>As you already might know, I made StarTalk, ChromeApp, MoviePlanet, PlanetBlog, and TravelPlanet.</p><p>Please check those works and contact me!</p>',
+            tags: ['junior', 'frontend developer', 'new hire'],
             username: "Paul H",
             publishedDate: "10/29/2021",
-            _id: "2",
+            _id: "15081254",
         }
     ],
 }
